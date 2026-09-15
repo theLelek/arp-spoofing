@@ -1,1 +1,5 @@
-youll need to install Graphviz and ImageMagick (dependencies of scapy) using your system specific package manager
+youll need to install Graphviz, ImageMagick and TeX Live (dependencies of scapy)
+
+
+todo:
+- use nix for reproducibility
