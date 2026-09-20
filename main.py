@@ -1,5 +1,4 @@
 from scapy.all import *
-from scapy.layers import dhcp
 
 
 default_gateway = conf.route.route("0.0.0.0")[2]
@@ -9,13 +8,25 @@ print(conf.route)
 #print(conf.ifaces) # lists interfaces
 #print(conf.route)
 
-a = Ether()
 
-#p = sr1(
-#    IP(dst="example.com") / ICMP() / "XXXXXXXXXXX"
-#)
+# Capture only 10 packets
+packets = sniff(count=10)
+
+# Display a simple summary
+packets.summary()
 
 
-#reply = sr1(IP(dst="8.8.8.8")/ICMP())
-#if reply:
-#    reply.show()
+arp_response = (
+    Ether(
+        dst="aa:bb:cc:dd:ee:ff"
+    )
+    / ARP(
+        op="is-at",
+        hwsrc="11:22:33:44:55:66",
+        psrc="192.168.1.1",
+        hwdst="aa:bb:cc:dd:ee:ff",
+        pdst="192.168.1.100"
+    )
+)
+
+packet.show()
